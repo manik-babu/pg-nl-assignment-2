@@ -74,11 +74,11 @@ ASSIGNMENT-2/
 ## 🏁 Run the Project
 ### 1. Clone the repository  
 ```bash
-git clone https://github.com/manik-babu/pg-assignment-2.git
+git clone https://github.com/manik-babu/pg-nl-assignment-2.git
 ```
 ### 2. Navigate to the folder
 ```bash
-cd pg-assignment-2
+cd pg-nl-assignment-2
 ```
 ### 4. Install dependencies
 ```bash
