@@ -2,7 +2,7 @@
 
 ## Live deployment link
 ```
-
+https://pg-assignment-2.vercel.app
 ```
 
 ## 🚀 Features
