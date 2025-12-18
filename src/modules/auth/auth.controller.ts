@@ -31,7 +31,7 @@ const signup = async (req: Request, res: Response) => {
         });
     }
 }
-const login = async (req: Request, res: Response) => {
+const signin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     try {
         // form validation
@@ -74,6 +74,6 @@ const login = async (req: Request, res: Response) => {
 
 const authController = {
     signup,
-    login,
+    signin,
 }
 export default authController;
