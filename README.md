@@ -59,7 +59,8 @@ ASSIGNMENT-2/
 │   │       └── vehicle.service.ts
 │   │
 │   ├── types/
-│   │   └── express.d.ts
+│   │   └── express
+│   │       └── express.d.ts
 │   │
 │   ├── app.ts
 │   └── server.ts
@@ -85,14 +86,15 @@ cd pg-nl-assignment-2
 npm install
 ```
 ### 5. Create a .env file
-Inside the project root create a `.env` file
+Inside the project root create a `.env` file.
+And set the following environment variables
 ```
 PORT=8080
 CONNECTING_STR=[PostgreSQL connecting string]
 JWT_SECRET=[Put here a jwt secret]
 ```
 ### 6. Run the server
-Use tsx npm package to autorun the server on save
+Run the server by the following command
 ```bash
 npm run dev
 ```
