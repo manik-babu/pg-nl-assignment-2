@@ -36,7 +36,6 @@ const createBooking = async (req: Request, res: Response) => {
 const getAllBookings = async (req: Request, res: Response) => {
     const { id, role } = req.loggedInUser as JwtPayload;
     try {
-        console.log({ id, role });
         var result;
         if (role == "admin") {
             result = await bookingService.getAllBookings();
@@ -64,7 +63,7 @@ const updateBooking = async (req: Request, res: Response) => {
     const { role } = req.loggedInUser as JwtPayload;
     const { status } = req.body;
     try {
-        if (role != 'admin' && status == 'returned') {
+        if ((role != 'admin' && status == 'returned') || (role == 'customer' && status == 'returned')) {
             return res.status(403).json({
                 success: false,
                 message: "Booking update failed!",
@@ -80,8 +79,7 @@ const updateBooking = async (req: Request, res: Response) => {
                 errors: `Booking not found for id ${bookingId}`
             })
         }
-
-        if (isStartTimeOver == true) {
+        if (status == 'cancelled' && isStartTimeOver == true) {
             return res.status(400).json({
                 success: false,
                 message: "Booking update failed!",
