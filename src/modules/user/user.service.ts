@@ -24,7 +24,7 @@ const permissionError = (userId: string, loggedInUser: any, data: any) => {
     return null;
 }
 const updateUser = async (userId: string, data: any) => {
-    const result = await pool.query(`SELECT id, name, email, phone, role FROM users WHERE id = $1`, [userId]);
+    const result = await pool.query(`SELECT * FROM users WHERE id = $1`, [userId]);
 
     // returning null if not found any user
     if (result.rowCount == 0) {
@@ -36,7 +36,7 @@ const updateUser = async (userId: string, data: any) => {
         ...data
     }
     const tableInputs = [updatedUser.name, updatedUser.email, updatedUser.phone, updatedUser.role, userId];
-    const user = await pool.query(`UPDATE users SET name = $1, email = $2, phone = $3, role = $4 WHERE id = $5 RETURNING *`, tableInputs);
+    const user = await pool.query(`UPDATE users SET name = $1, email = $2, phone = $3, role = $4 WHERE id = $5 RETURNING id, name, email, phone, role`, tableInputs);
 
     return user.rows[0];
 
