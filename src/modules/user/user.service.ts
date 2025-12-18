@@ -18,13 +18,13 @@ const permissionError = (userId: string, loggedInUser: any, data: any) => {
     if (loggedInUser.id != userId && loggedInUser.role != 'admin') {
         return "Insufficient permissions! You are not allowed to do this!";
     }
-    if (loggedInUser.id == userId && !!data.role) {
+    if (!!data.role && loggedInUser.role != 'admin') {
         return "Only admin can change customers role";
     }
     return null;
 }
 const updateUser = async (userId: string, data: any) => {
-    const result = await pool.query(`SELECT * FROM users WHERE id = $1`, [userId]);
+    const result = await pool.query(`SELECT id, name, email, phone, role FROM users WHERE id = $1`, [userId]);
 
     // returning null if not found any user
     if (result.rowCount == 0) {
